@@ -17,6 +17,23 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a password"],
     },
+     phone_number: { 
+    type: String, 
+    required: true,
+    match: /^\d{10,}$/ // Must be at least 10 digits
+  },
+  gender: { 
+    type: String, 
+    required: true,
+    enum: ["Male", "Female", "Other"]
+  },
+  date_of_birth: { type: Date, required: true },
+  membership_status: { 
+    type: String, 
+    required: true,
+    enum: ["Active", "Inactive", "Suspended"]
+  },
+    
   },
   {
     timestamps: true,

@@ -27,7 +27,10 @@ const userSchema = mongoose.Schema(
     required: true,
     enum: ["Male", "Female", "Other"]
   },
-  date_of_birth: { type: Date, required: true },
+  date_of_birth: {
+    type: Date, 
+    required: true 
+  },
   membership_status: { 
     type: String, 
     required: true,
@@ -43,7 +46,7 @@ const userSchema = mongoose.Schema(
 
 
 // static signup method
-userSchema.statics.signup = async function (name, email, password) {
+userSchema.statics.signup = async function (name, email, password, phone_number, gender, date_of_birth, membership_status) {
   // validation
   if ((!name, !email || !password)) {
     throw Error("Please add all fields");
@@ -68,6 +71,10 @@ userSchema.statics.signup = async function (name, email, password) {
     name,
     email,
     password: hashedPassword,
+    phone_number, 
+    gender, 
+    date_of_birth,
+    membership_status
   });
 
   return user;
